@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Resume Critic</title>
+    </Head>
+
+    <body>
+        <h1>Resume Critic</h1>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" name ="resume" id="resume" accept=".pdf" hidden> <!--Hides the actual functional button so I can style it my way below-->
+            <label for="resume" class="customLabel"> Upload your Resume </label> <!--Allows me to rename the choose file button using an ID to "Choose your Resume"-->
+            <p>Files we can read: PDF</p>
+            <span id="filename"> No file chosen</span>
+            <div class="spinner" id="spinner"></div>
+           
+        </form>
+
+        <script>
+
+            const fileInput = document.getElementById("resume");
+            const form = document.getElementById("uploadForm");
+            const fileNameSpan = document.getElementById("filename");
+            const spinner = document.getElementById("spinner");
+
+            spinner.style.display = "none"; // hides the loading circle
+
+            fileInput.addEventListener("change", () =>{ // function runs when the resume is uploaded
+
+                if (fileInput.files.length > 0) { // if the file contains data
+
+                    fileNameSpan.textContent = fileInput.files[0].name; // replace the "No file chosen" with the name of said file
+                    spinner.style.display = "block"; // displays the loading bar 
+                    form.submit(); // loads the next page
+
+                }
+                else{
+                    fileNameSpan.textContent = "No File Chosen";
+                }
+            })
+                     
+        </script>
+        
+    </body>
+</html>

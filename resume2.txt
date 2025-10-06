@@ -1,0 +1,22 @@
+John Doe
+Email: john.doe@example.com
+Phone: 555-123-4567
+
+Skills: Python, Java, SQL, HTML, CSS, Git
+
+Education:
+Bachelor of Science in Information Technology (Completed)
+Master of Science in Data Science (In Progress)
+
+Experience:
+Software Engineer Intern at TechCorp (2022-2023)
+- Developed Python scripts to automate data processing
+- Assisted in building a web dashboard using HTML/CSS/JavaScript
+
+Projects:
+Personal Portfolio Website
+- Built with HTML, CSS, and JavaScript
+- Showcases projects and skills
+
+References:
+Available upon request

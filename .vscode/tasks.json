@@ -1,0 +1,48 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+
+            "label": "C/C++: g++ build entire project",
+
+            "type": "shell",
+
+            "command": "g++",
+
+            "args": [
+
+                  "-std=c++11",
+  				  "-g",
+  				  "*.cpp",
+  				  "-o",
+    			  "a.out"
+                 
+            ],
+
+            "options": {
+
+                "cwd": "${workspaceFolder}"
+				
+				
+
+            },
+
+            "problemMatcher": [
+
+                "$gcc"
+
+            ],
+
+            "group": {
+
+                "kind": "build",
+
+                "isDefault": true
+
+            },
+
+            "detail": "Build all .cpp files into one binary."
+
+        }
+	]
+}

@@ -1,0 +1,46 @@
+
+html, body{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    margin-top: 100;
+}
+
+.customlabel{
+
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+    background-color: rgb(67, 142, 248);
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 30;
+    padding:10px;
+}
+
+.fileName {
+    display: block;
+    margin-top: 10px;
+    font-style: italic;
+    color: #333;
+}
+
+.customlabel:hover{
+    background-color: rgb(27, 8, 193);
+}
+
+.spinner {
+    border: 8px solid #f3f3f3; /* Light gray background */
+    border-top: 8px solid #4CAF50; /* Green spinning part */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite; /* Infinite rotation */
+    margin: 20px auto; /* Center horizontally */
+}
+
+
+@keyframes spin { /* rotates the loading circle */
+
+ 0% {transform: rotate(0deg);}
+ 100% { transform: rotate(360deg); }
+
+}

@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='results.css') }}">
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Analysis Results</title>
+</head>
+<body>
+
+    <div class="top-bar">
+    <h1>Resume Analysis Results</h1>
+    </div>
+
+  <div class="Container">
+    <div class="leftBlock">
+    <h2>Readability</h2>
+
+    <h3>Read Score: {{result.readability.flesch | int}} / 100
+    <span class="infoIcon">
+            i
+        <span class="tooltipText">
+            Results can be skewed if resume has many one word bullet points (i.e skills)
+        </span>
+     </span>
+    </h3>
+    
+       {% if result.readability.flesch >= 80 %}
+    <p> Easy Readability!</p>
+       {% elif result.readability.flesch >= 60 %}
+    <p> Moderate Readability</p>
+       {% else %}
+    <p> Difficult to Read</p>
+       {% endif %}
+
+    <h3>Reading Grade Level: {{result.readability.grade | int}}</h3>
+        {% if result.readability.grade >= 13 %}
+    <p> College Level Writing</p>
+        {% elif result.readability.grade >= 9 %}
+    <p> High School Level Writing</p>
+        {% else %}
+    <p> Elementary Level Writing</p>
+        {% endif %}
+
+    <h3>Average Sentence Length: {{result.readability.AvgSenLen | int }}</h3>
+    {% if result.readability.AvgSenLen >= 20 %}
+    <p>Sentences are Too Long! Make sure to put periods after each Sentence if results are unusually high.</p>
+    {% elif result.readability.AvgSenLen >= 8 %}
+    <p> Sentences are Short and Concise!</p>
+    {% else %}
+    <p> Sentences need more Context!</p>
+    {% endif %}
+   <hr>
+    <h2>Sentence Structure</h2>
+    
+    <h3> Passive Voice Percentage: {{result.passiveVoiceRatio | int }}%</h3>
+    <p>Shows how Much of Your Resume has Passive Voice</p>
+ <span class="infoIcon2">
+        i
+    <span class="tooltipText">
+        Examples: "The team fixed the bug" "The project was made by my group"
+    </span>
+ </span>
+    <hr>
+    <h2>Grammar</h2>
+
+    <h3>Number of Possible Grammar Errors: {{result.Grammar.count}}</h3>
+    <h4> Examples from Your Resume:</h4>
+    {% if result.Grammar.examples %}
+        {%for items in result.Grammar.examples%}
+        <ul>
+            <li> <strong>{{items.error}}:</strong> {{items.message}}</li>
+        </ul>
+        {% endfor %}
+    {% else %}
+     <p> No Errors Found!</p>
+    {% endif %}
+  </div>
+<hr>
+    <div class="rightBlock">
+     <h2>AI Advice</h2>
+    <div>
+        {{result.aiAdvice | safe }}
+    </div> 
+    </div>
+</div>
+    
+   <form action ="{{url_for('index')}}">
+        <button button type="submit"> Go Back </button>
+    </form>
+    
+</body>
+</html>
