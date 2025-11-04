@@ -5,8 +5,13 @@ import re
 import os
 import cohere # allows me to use AI to generate advice on the given resume
 import pdfplumber
+from dotenv import load_dotenv # --> I stored my api key in a seperate file so that its private and no one can see it. This allows me do that
 
-co = cohere.ClientV2("E6hBfZY73OFnCESJMrNQ40GKkzGsYR8OaMzWIfK1") # free API token I got off of Cohere
+load_dotenv() # --> gets my hidden api key
+
+API_KEY = os.getenv("API_KEY")
+
+co = cohere.ClientV2(API_KEY) # free API token I got off of Cohere
 
 nlp = spacy.load("en_core_web_sm") # contains data like sentence structure and parts of speech for spacy to collect and use for analyzing text
 
@@ -72,8 +77,7 @@ def analyzeWithAI(text):
         {
             "role": "user",
             "content": f"""You are a professional resume critic. 
-                        I need you to critque the following resume. Make it short and concise and rate it out of 10. Dont be too forgiving
-                         with the grade. {text}""",
+                        I need you to critque the following resume. Make it short and concise and rate it out of 10. {text}""",
         }
     ],
     )
